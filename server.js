@@ -15,24 +15,32 @@ var options = {
     customCss: ".swagger-ui .topbar {display: none}"
 };
 
-app.use((req, res, next) => {
-    res.setHeader(
-        "Access-Control-Allow-Origin",
-        "*"
-    );
-    res.setHeader(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept, Z-Key"
-    );
-    res.setHeader("Access-Control-Allow-Methods",
-        "GET, POST, PUT, DELETE, OPTIONS"
-    );
-    next();
-});
 app
-    .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, options))
     .use(bodyParser.json())
+    .use((req, res, next) => {
+        res.setHeader(
+            "Access-Control-Allow-Origin",
+            "*"
+        );
+        res.setHeader(
+            "Access-Control-Allow-Headers",
+            "Origin, X-Requested-With, Content-Type, Accept, Z-Key"
+        );
+        res.setHeader("Access-Control-Allow-Methods",
+            "GET, POST, PUT, DELETE, OPTIONS"
+        );
+        next();
+    })
+    .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, options))
     .use("/", require("./routes"));
+
+// Error Handling
+process.on("uncaughtException", (err, origin) => {
+    console.log(process.stderr.fd,
+        `Caught exception: ${err}\n` +
+        `Exception origin: ${origin}`
+    );
+});
 
 
 mongodb.initDb((err) => {

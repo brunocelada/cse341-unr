@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require("path");
 
 const carrerasController = require("../controllers/carreras");
+const validation = require("../middleware/validate");
 
 router.get("/display/", (req, res) => {
     //#swagger.tags=["Carreras"]
@@ -14,9 +15,9 @@ router.get("/", carrerasController.getAll);
 
 router.get("/:id", carrerasController.getSingle);
 
-router.post("/", carrerasController.createCarrera);
+router.post("/", validation.saveDegree, carrerasController.createCarrera);
 
-router.put("/:id", carrerasController.updateCarrera);
+router.put("/:id", validation.saveDegree, carrerasController.updateCarrera);
 
 router.delete("/:id", carrerasController.deleteCarrera);
 
