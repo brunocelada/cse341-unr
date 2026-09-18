@@ -4,68 +4,76 @@
 ### GET home page
 GET http://localhost:3000/
 
-// Contacts (all)
-### GET all contacts
-GET http://localhost:3000/contacts
+// Carreras (all)
+### GET all degrees
+GET http://localhost:3000/carreras
 
-// Contacts (individual)
-### GET individual contact (1)
-GET http://localhost:3000/contacts/6a9a09fc8b4684248dfe7339
-### GET individual contact (2)
-GET http://localhost:3000/contacts/6a9a0ae28b4684248dfe733c
-### GET individual contact (3)
-GET http://localhost:3000/contacts/6a9a0b158b4684248dfe733d
+// Carreras (individual)
+### GET individual degree (1)
+GET http://localhost:3000/carreras/6aac8239c8c74d4a0c5dd4ba
+### GET individual degree (2)
+GET http://localhost:3000/carreras/6aac8465c8c74d4a0c5dd4bd
+### GET individual degree (3)
+GET http://localhost:3000/carreras/6aac8489c8c74d4a0c5dd4be
 
-### CREATE contact (6)
-POST http://localhost:3000/contacts/ HTTP/1.1
+### CREATE degree
+POST http://localhost:3000/carreras/ HTTP/1.1
 content-type: application/json
 
 {
-  "firstName": "Test-4",
-  "lastName": "lastTest-4",
-  "email": "test4@gmail.com",
-  "favoriteColor": "Black",
-  "birthday": "apr-4"
+  "carrera": "test Degree",
+  "facultadId": "6aac62e3d487cbc054c59707",
+  "phone": "(0341) 4804592",
+  "durationYears": 5,
+  "mail": "test@mail.edu.ar",
+  "creditHours": 4000,
+  "type": "Carreras de Grado"
 }
-### CREATE contact (7) FAILED BECAUSE IT NOT HAS BDAY
-POST http://localhost:3000/contacts/ HTTP/1.1
+### CREATE degree --> FAILED BECAUSE IT NOT HAS "type"
+POST http://localhost:3000/carreras/ HTTP/1.1
 content-type: application/json
 
 {
-  "firstName": "Test-5",
-  "lastName": "lastTest-5",
-  "email": "test5@gmail.com",
-  "favoriteColor": "White"
+  "carrera": "test Degree",
+  "facultadId": "6aac62e3d487cbc054c59707",
+  "phone": "(0341) 4804592",
+  "durationYears": 5,
+  "mail": "test@mail.edu.ar",
+  "creditHours": 4000
 }
 
-// Updating the color from Blue to Dark Blue
-### UPDATE individual contact (3)
-PUT http://localhost:3000/contacts/6a9a0b158b4684248dfe733d
+// Updating the degree type from "Carreras de Grado" to "Doctorados"
+### UPDATE individual degree
+PUT http://localhost:3000/carreras/6aac8489c8c74d4a0c5dd4be
 content-type: application/json
 
 {
-  "firstName": "Manuel",
-  "lastName": "Lauria",
-  "email": "manuellauria@gmail.com",
-  "favoriteColor": "Dark Blue",
-  "birthday": "may-29"
+  "carrera": "Farmacia",
+  "facultadId": "6aac62e3d487cbc054c59707",
+  "phone": "(0341) 4804592",
+  "durationYears": 5,
+  "mail": "estudiantil@fbioyf.edu.ar",
+  "creditHours": 3100,
+  "type": "Doctorados"
 }
-// Go back from Dark Blue to Blue
-### UPDATE individual contact (3)
-PUT http://localhost:3000/contacts/6a9a0b158b4684248dfe733d
+// Go back "Carreras de Grado"
+### UPDATE individual degree
+PUT http://localhost:3000/carreras/6aac8489c8c74d4a0c5dd4be
 content-type: application/json
 
 {
-  "firstName": "Manuel",
-  "lastName": "Lauria",
-  "email": "manuellauria@gmail.com",
-  "favoriteColor": "Blue",
-  "birthday": "may-29"
+  "carrera": "Farmacia",
+  "facultadId": "6aac62e3d487cbc054c59707",
+  "phone": "(0341) 4804592",
+  "durationYears": 5,
+  "mail": "estudiantil@fbioyf.edu.ar",
+  "creditHours": 3100,
+  "type": "Carreras de Grado"
 }
 
-// Removing a contact
-### DELETE individual contact (id)
-DELETE http://localhost:3000/contacts/6aa1f3fb66081b5d30432300
+// Removing a degree
+### DELETE individual degree (id)
+DELETE http://localhost:3000/carreras/6aad46a3c431da7a303f8019
 
 
 
@@ -76,67 +84,75 @@ DELETE http://localhost:3000/contacts/6aa1f3fb66081b5d30432300
 ### GET home page
 GET https://cse341-unr.onrender.com/
 
-// Contacts (all)
-### GET all contacts
-GET https://cse341-unr.onrender.com/contacts
+// Carreras (all)
+### GET all degrees
+GET https://cse341-unr.onrender.com/carreras
 
-// Contacts (individual)
-### GET individual contact (1)
-GET https://cse341-unr.onrender.com/contacts/6a9a09fc8b4684248dfe7339
-### GET individual contact (2)
-GET https://cse341-unr.onrender.com/contacts/6a9a0ae28b4684248dfe733c
-### GET individual contact (3)
-GET https://cse341-unr.onrender.com/contacts/6a9a0b158b4684248dfe733d
+// Carreras (individual)
+### GET individual degree (1)
+GET https://cse341-unr.onrender.com/carreras/6aac8239c8c74d4a0c5dd4ba
+### GET individual degree (2)
+GET https://cse341-unr.onrender.com/carreras/6aac8465c8c74d4a0c5dd4bd
+### GET individual degree (3)
+GET https://cse341-unr.onrender.com/carreras/6aac8489c8c74d4a0c5dd4be
 
 
-### CREATE contact (6)
-POST https://cse341-unr.onrender.com/contacts/ HTTP/1.1
+### CREATE degree (6)
+POST https://cse341-unr.onrender.com/carreras/ HTTP/1.1
 content-type: application/json
 
 {
-  "firstName": "Test-4",
-  "lastName": "lastTest-4",
-  "email": "test4@gmail.com",
-  "favoriteColor": "Black",
-  "birthday": "apr-4"
+  "carrera": "test Degree",
+  "facultadId": "6aac62e3d487cbc054c59707",
+  "phone": "(0341) 4804592",
+  "durationYears": 5,
+  "mail": "test@mail.edu.ar",
+  "creditHours": 4000,
+  "type": "Carreras de Grado"
 }
-### CREATE contact (7) FAILED BECAUSE IT NOT HAS BDAY
-POST https://cse341-unr.onrender.com/contacts/ HTTP/1.1
+### CREATE degree --> FAILED BECAUSE IT NOT HAS "type"
+POST https://cse341-unr.onrender.com/carreras/ HTTP/1.1
 content-type: application/json
 
 {
-  "firstName": "Test-5",
-  "lastName": "lastTest-5",
-  "email": "test5@gmail.com",
-  "favoriteColor": "White"
+  "carrera": "test Degree",
+  "facultadId": "6aac62e3d487cbc054c59707",
+  "phone": "(0341) 4804592",
+  "durationYears": 5,
+  "mail": "test@mail.edu.ar",
+  "creditHours": 4000
 }
 
-// Updating the color from Blue to Dark Blue
-### UPDATE individual contact (3)
-PUT https://cse341-unr.onrender.com/contacts/6a9a0b158b4684248dfe733d
+// Updating the degree type from "Carreras de Grado" to "Doctorados"
+### UPDATE individual degree
+PUT https://cse341-unr.onrender.com/carreras/6aac8489c8c74d4a0c5dd4be
 content-type: application/json
 
 {
-  "firstName": "Manuel",
-  "lastName": "Lauria",
-  "email": "manuellauria@gmail.com",
-  "favoriteColor": "Dark Blue",
-  "birthday": "may-29"
+  "carrera": "Farmacia",
+  "facultadId": "6aac62e3d487cbc054c59707",
+  "phone": "(0341) 4804592",
+  "durationYears": 5,
+  "mail": "estudiantil@fbioyf.edu.ar",
+  "creditHours": 3100,
+  "type": "Doctorados"
 }
-// Go back from Dark Blue to Blue
-### UPDATE individual contact (3)
-PUT https://cse341-unr.onrender.com/contacts/6a9a0b158b4684248dfe733d
+// Go back "Carreras de Grado"
+### UPDATE individual degree
+PUT https://cse341-unr.onrender.com/carreras/6aac8489c8c74d4a0c5dd4be
 content-type: application/json
 
 {
-  "firstName": "Manuel",
-  "lastName": "Lauria",
-  "email": "manuellauria@gmail.com",
-  "favoriteColor": "Blue",
-  "birthday": "may-29"
+  "carrera": "Farmacia",
+  "facultadId": "6aac62e3d487cbc054c59707",
+  "phone": "(0341) 4804592",
+  "durationYears": 5,
+  "mail": "estudiantil@fbioyf.edu.ar",
+  "creditHours": 3100,
+  "type": "Carreras de Grado"
 }
 
-// Removing a contact
-### DELETE individual contact (id)
-DELETE https://cse341-unr.onrender.com/contacts/6aa1f69eb23e610c1ef1085c
+// Removing a degree
+### DELETE individual degree (id)
+DELETE https://cse341-unr.onrender.com/carreras/
 
