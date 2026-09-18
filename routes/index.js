@@ -3,6 +3,7 @@ const path = require("path");
 
 router.get("/", (req, res) => {
     //#swagger.tags=["Home"]
+    //#swagger.ignore = true
     res.sendFile(path.join(__dirname, "../views/index.html"));
 });
 

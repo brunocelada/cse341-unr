@@ -5,6 +5,8 @@ const path = require("path");
 const carrerasController = require("../controllers/carreras");
 
 router.get("/display/", (req, res) => {
+    //#swagger.tags=["Carreras"]
+    //#swagger.ignore = true
     res.sendFile(path.join(__dirname, "../views/carreras.html"));
 });
 

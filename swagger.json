@@ -11,29 +11,6 @@
     "https"
   ],
   "paths": {
-    "/": {
-      "get": {
-        "tags": [
-          "Home"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/carreras/display/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/carreras/": {
       "get": {
         "tags": [
@@ -216,16 +193,6 @@
           },
           "500": {
             "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/facultades/display/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
           }
         }
       }
