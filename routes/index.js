@@ -1,8 +1,9 @@
 const router = require("express").Router();
+const path = require("path");
 
 router.get("/", (req, res) => {
     //#swagger.tags=["Home"]
-    res.send("Carreras y Facultades");
+    res.sendFile(path.join(__dirname, "../views/index.html"));
 });
 
 router.use("/carreras", require("./carreras"));

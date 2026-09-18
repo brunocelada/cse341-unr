@@ -7,6 +7,8 @@ const swaggerDocument = require("./swagger.json");
 const mongodb = require("./data/database.js");
 const app = express();
 
+app.use(express.static("public"));
+
 const PORT = process.env.PORT || 3000;
 
 var options = {

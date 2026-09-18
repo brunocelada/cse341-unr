@@ -2,108 +2,116 @@ const mongodb = require("../data/database");
 const ObjectId = require("mongodb").ObjectId;
 
 const getSingle = async (req, res) => {
-    //#swagger.tags=["Contacts"]
-    //#swagger.summary = "Get a contact by ID" 
-    //#swagger.description = "Retrieves a single contact using its MongoDB ID."
-    const contactId = new ObjectId(req.params.id);
-    const result = await mongodb.getDatabase().db().collection("contacts").find({ _id: contactId });
-    result.toArray().then((contacts) => {
-        if (contacts.length === 0) {
+    //#swagger.tags=["Carreras"]
+    //#swagger.summary = "Get a degree by ID" 
+    //#swagger.description = "Retrieves a single degree using its MongoDB ID."
+    const degreeId = new ObjectId(req.params.id);
+    const result = await mongodb.getDatabase().db().collection("carreras").find({ _id: degreeId });
+    result.toArray().then((degrees) => {
+        if (degrees.length === 0) {
             return res.status(404).json({ message: "ID not found" });
         }
         res.setHeader("Content-Type", "application/json");
-        res.status(200).json(contacts[0]);
+        res.status(200).json(degrees[0]);
     });
 };
 
 const getAll = async (req, res) => {
-    //#swagger.tags=["Contacts"]
-    //#swagger.summary = "Get all contacts"
-    //#swagger.description = "Retrieves all contacts stored in the database."
-    const result = await mongodb.getDatabase().db().collection("contacts").find();
-    result.toArray().then((contacts) => {
-        if (contacts.length === 0) {
+    //#swagger.tags=["Carreras"]
+    //#swagger.summary = "Get all degrees"
+    //#swagger.description = "Retrieves all degrees stored in the database."
+    const result = await mongodb.getDatabase().db().collection("carreras").find();
+    result.toArray().then((degrees) => {
+        if (degrees.length === 0) {
             return res.status(404).json({ message: "Database is empty" });
         }
         res.setHeader("Content-Type", "application/json");
-        res.status(200).json(contacts);
+        res.status(200).json(degrees);
     });
 };
 
 const createCarrera = async (req, res) => {
-    //#swagger.tags=["Contacts"]
-    //#swagger.summary = "Create a new contact"
-    //#swagger.description = "Creates a new contact in the database."
+    //#swagger.tags=["Carreras"]
+    //#swagger.summary = "Create a new degree"
+    //#swagger.description = "Creates a new degree in the database."
     const {
-        firstName,
-        lastName,
-        email,
-        favoriteColor,
-        birthday
+        carrera,
+        facultadId,
+        phone,
+        durationYears,
+        mail,
+        creditHours,
+        type
     } = req.body;
-    const contact = {
-        firstName,
-        lastName,
-        email,
-        favoriteColor,
-        birthday
+    const degree = {
+        carrera,
+        facultadId,
+        phone,
+        durationYears,
+        mail,
+        creditHours,
+        type
     };
-    if (!firstName || !lastName || !email || !favoriteColor || !birthday) {
+    if (!carrera || !facultadId || !phone || !durationYears || !mail || !creditHours || !type) {
         return res.status(400).json({ message: "All fields are required." });
     };
-    const response = await mongodb.getDatabase().db().collection("contacts").insertOne(contact);
+    const response = await mongodb.getDatabase().db().collection("carreras").insertOne(degree);
     if (response.acknowledged) {
         res.status(201).json({ id: response.insertedId });
     } else {
-        res.status(500).json(response.error || "Some error ocurred while creating the user.");
+        res.status(500).json(response.error || "Some error ocurred while creating the degree.");
     }
 };
 
 const updateCarrera = async (req, res) => {
-    //#swagger.tags=["Contacts"]
-    //#swagger.summary = "Update a contact"
-    //#swagger.description = "Updates an existing contact using its MongoDB ID."
-    const contactId = new ObjectId(req.params.id);
+    //#swagger.tags=["Carreras"]
+    //#swagger.summary = "Update a degree"
+    //#swagger.description = "Updates an existing degree using its MongoDB ID."
+    const degreeId = new ObjectId(req.params.id);
     const {
-        firstName,
-        lastName,
-        email,
-        favoriteColor,
-        birthday
+        carrera,
+        facultadId,
+        phone,
+        durationYears,
+        mail,
+        creditHours,
+        type
     } = req.body;
-    const contact = {
-        firstName,
-        lastName,
-        email,
-        favoriteColor,
-        birthday
+    const degree = {
+        carrera,
+        facultadId,
+        phone,
+        durationYears,
+        mail,
+        creditHours,
+        type
     };
-    if (!firstName || !lastName || !email || !favoriteColor || !birthday) {
+    if (!carrera || !facultadId || !phone || !durationYears || !mail || !creditHours || !type) {
         return res.status(400).json({ message: "All fields are required." });
     };
-    const response = await mongodb.getDatabase().db().collection("contacts").replaceOne({ _id: contactId }, contact);
+    const response = await mongodb.getDatabase().db().collection("carreras").replaceOne({ _id: degreeId }, degree);
     if (response.matchedCount === 0) {
         return res.status(404).json({ message: "ID not found" });
     }
     if (response.modifiedCount > 0) {
-        res.status(200).json({ message: "Contact updated" });
+        res.status(200).json({ message: "Degree updated" });
     } else {
-        res.status(500).json(response.error || "Some error ocurred while updating the user.");
+        res.status(500).json(response.error || "Some error ocurred while updating the degree.");
     }
 };
 
 const deleteCarrera = async (req, res) => {
-    //#swagger.tags=["Contacts"]
-    //#swagger.summary = "Delete a contact"
-    //#swagger.description = "Deletes a contact using its MongoDB ID."
-    const contactId = new ObjectId(req.params.id);
-    const response = await mongodb.getDatabase().db().collection("contacts").deleteOne({ _id: contactId });
+    //#swagger.tags=["Carreras"]
+    //#swagger.summary = "Delete a degree"
+    //#swagger.description = "Deletes a degree using its MongoDB ID."
+    const degreeId = new ObjectId(req.params.id);
+    const response = await mongodb.getDatabase().db().collection("carreras").deleteOne({ _id: degreeId });
     if (response.deletedCount === 0) {
         return res.status(404).json({ message: "ID not found" });
     } else if (response.deletedCount > 0) {
-        res.status(200).json({ message: "Contact removed" });
+        res.status(200).json({ message: "Degree removed" });
     } else {
-        res.status(500).json(response.error || "Some error ocurred while deleting the user.");
+        res.status(500).json(response.error || "Some error ocurred while deleting the degree.");
     }
 };
 
