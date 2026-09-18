@@ -2,9 +2,6 @@ const mongodb = require("../data/database");
 const ObjectId = require("mongodb").ObjectId;
 
 const getSingle = async (req, res) => {
-    //#swagger.tags=["Carreras"]
-    //#swagger.summary = "Get a degree by ID" 
-    //#swagger.description = "Retrieves a single degree using its MongoDB ID."
     try {
         if (!ObjectId.isValid(req.params.id)) {
             res.status(400).json("You must use a valid degree id.");
@@ -32,9 +29,6 @@ const getSingle = async (req, res) => {
 };
 
 const getAll = async (req, res) => {
-    //#swagger.tags=["Carreras"]
-    //#swagger.summary = "Get all degrees"
-    //#swagger.description = "Retrieves all degrees stored in the database."
     try {
         const result = await mongodb
             .getDatabase()
@@ -59,9 +53,6 @@ const getAll = async (req, res) => {
 };
 
 const createCarrera = async (req, res) => {
-    //#swagger.tags=["Carreras"]
-    //#swagger.summary = "Create a new degree"
-    //#swagger.description = "Creates a new degree in the database."
     try {
         const {
             carrera,
@@ -100,9 +91,6 @@ const createCarrera = async (req, res) => {
 };
 
 const updateCarrera = async (req, res) => {
-    //#swagger.tags=["Carreras"]
-    //#swagger.summary = "Update a degree"
-    //#swagger.description = "Updates an existing degree using its MongoDB ID."
     try {
         if (!ObjectId.isValid(req.params.id)) {
             res.status(400).json("You must use a valid degree id to update it.");
@@ -148,9 +136,6 @@ const updateCarrera = async (req, res) => {
 };
 
 const deleteCarrera = async (req, res) => {
-    //#swagger.tags=["Carreras"]
-    //#swagger.summary = "Delete a degree"
-    //#swagger.description = "Deletes a degree using its MongoDB ID."
     try {
         if (!ObjectId.isValid(req.params.id)) {
             res.status(400).json("You must use a valid degree id to delete it.");

@@ -2,9 +2,6 @@ const mongodb = require("../data/database");
 const ObjectId = require("mongodb").ObjectId;
 
 const getSingle = async (req, res) => {
-    //#swagger.tags=["Facultades"]
-    //#swagger.summary = "Get an university by ID" 
-    //#swagger.description = "Retrieves a single university using its MongoDB ID."
     try {
         if (!ObjectId.isValid(req.params.id)) {
             res.status(400).json("You must use a valid university id.");
@@ -28,9 +25,6 @@ const getSingle = async (req, res) => {
 };
 
 const getAll = async (req, res) => {
-    //#swagger.tags=["Facultades"]
-    //#swagger.summary = "Get all universities"
-    //#swagger.description = "Retrieves all universities stored in the database."
     try {
         const result = await mongodb.getDatabase().db().collection("facultades").find();
         result.toArray().then((facultades) => {
@@ -50,9 +44,6 @@ const getAll = async (req, res) => {
 };
 
 const createFacultad = async (req, res) => {
-    //#swagger.tags=["Facultades"]
-    //#swagger.summary = "Create a new university"
-    //#swagger.description = "Creates a new university in the database."
     try {
         const {
             name,
@@ -91,9 +82,6 @@ const createFacultad = async (req, res) => {
 };
 
 const updateFacultad = async (req, res) => {
-    //#swagger.tags=["Facultades"]
-    //#swagger.summary = "Update a university"
-    //#swagger.description = "Updates an existing university using its MongoDB ID."
     try {
         if (!ObjectId.isValid(req.params.id)) {
             res.status(400).json("You must use a valid university id to update it.");
@@ -139,9 +127,6 @@ const updateFacultad = async (req, res) => {
 };
 
 const deleteFacultad = async (req, res) => {
-    //#swagger.tags=["Facultades"]
-    //#swagger.summary = "Delete a university"
-    //#swagger.description = "Deletes a university using its MongoDB ID."
     try {
         if (!ObjectId.isValid(req.params.id)) {
             res.status(400).json("You must use a valid university id to delete it.");

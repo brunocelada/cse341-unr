@@ -5,8 +5,8 @@ const doc = {
         title: "UNR API",
         description: "A RESTful API for managing degree programs information using Node.js, Express, and MongoDB. (BYU | CSE341)",
     },
-    host: "localhost:3000",
-    schemes: ["http", "https"],
+    host: "cse341-unr.onrender.com",
+    schemes: ["https"],
     // To test:
     //      host: "localhost:3000",
     //      schemes: ["http", "https"],
@@ -16,7 +16,7 @@ const doc = {
     contact: {
         name: "Bruno Celada",
         url: "https://github.com/brunocelada"
-    }
+    },
 };
 
 const outputFile = "./swagger.json";
