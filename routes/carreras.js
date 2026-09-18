@@ -1,7 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 
 const carrerasController = require("../controllers/carreras");
+
+router.get("/display/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../views/carreras.html"));
+});
 
 router.get("/", carrerasController.getAll);
 

@@ -9,6 +9,7 @@ header {
   background-color: #222;
   color: white;
   padding: 20px;
+  justify-items: center;
 }
 
 nav {
@@ -19,12 +20,21 @@ nav a {
   color: white;
   text-decoration: none;
   margin-right: 20px;
+  padding: 10px;
+  background-color: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.1s ease-in-out;
+}
+nav a:hover {
+  background-color: #363636;
 }
 
 main {
   max-width: 1000px;
   margin: 40px auto;
   padding: 20px;
+  min-height: 600px;
 }
 
 section {
@@ -41,4 +51,59 @@ a {
 footer {
   text-align: center;
   padding: 20px;
+}
+
+.siglas {
+  font-size: xx-large;
+  /* color: white; */
+  /* color: rgb(164, 0, 205); */
+  color: black;
+  background-color: white;
+  /* background-color: rgb(164, 0, 205); */
+  padding: 0.3em;
+}
+.cards {
+  display: flex;
+  flex-direction: column;
+}
+.cards a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #222;
+  padding: 10px;
+  margin: 10px;
+  font-size: large;
+  background-color: none;
+  transition: background-color 0.1s ease-in-out;
+  border-radius: 5px;
+}
+.cards a:hover {
+  color: #404040;
+  background-color: rgba(174, 2, 165, 0.135);
+}
+
+.cards hr {
+  border: none;
+  height: 0.1em;
+  margin: 0.5em auto;
+  background-color: #4e4e4ea8;
+  border-radius: 10px;
+}
+
+article {
+  background: white;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 6px;
+}
+article span {
+  font-weight: bold;
+}
+article a {
+  cursor: pointer;
+  color: #222;
+  transition: background-color 0.1s ease-in-out;
+}
+article a:hover {
+  color: #0066cc;
 }

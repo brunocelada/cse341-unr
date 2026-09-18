@@ -25,13 +25,23 @@
         }
       }
     },
+    "/carreras/display/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/carreras/": {
       "get": {
         "tags": [
-          "Contacts"
+          "Carreras"
         ],
-        "summary": "Get all contacts",
-        "description": "Retrieves all contacts stored in the database.",
+        "summary": "Get all degrees",
+        "description": "Retrieves all degrees stored in the database.",
         "produces": [
           "application/json"
         ],
@@ -45,10 +55,52 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Carreras"
+        ],
+        "summary": "Create a new degree",
+        "description": "Creates a new degree in the database.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "carrera": {
+                  "example": "any"
+                },
+                "facultadId": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "durationYears": {
+                  "example": "any"
+                },
+                "mail": {
+                  "example": "any"
+                },
+                "creditHours": {
+                  "example": "any"
+                },
+                "type": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -56,10 +108,10 @@
     "/carreras/{id}": {
       "get": {
         "tags": [
-          "Contacts"
+          "Carreras"
         ],
-        "summary": "Get a contact by ID",
-        "description": "Retrieves a single contact using its MongoDB ID.",
+        "summary": "Get a degree by ID",
+        "description": "Retrieves a single degree using its MongoDB ID.",
         "produces": [
           "application/json"
         ],
@@ -81,23 +133,70 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Carreras"
+        ],
+        "summary": "Update a degree",
+        "description": "Updates an existing degree using its MongoDB ID.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "carrera": {
+                  "example": "any"
+                },
+                "facultadId": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "durationYears": {
+                  "example": "any"
+                },
+                "mail": {
+                  "example": "any"
+                },
+                "creditHours": {
+                  "example": "any"
+                },
+                "type": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Carreras"
+        ],
+        "summary": "Delete a degree",
+        "description": "Deletes a degree using its MongoDB ID.",
         "parameters": [
           {
             "name": "id",
@@ -107,8 +206,24 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/facultades/display/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -116,10 +231,10 @@
     "/facultades/": {
       "get": {
         "tags": [
-          "Contacts"
+          "Facultades"
         ],
-        "summary": "Get all contacts",
-        "description": "Retrieves all contacts stored in the database.",
+        "summary": "Get all universities",
+        "description": "Retrieves all universities stored in the database.",
         "produces": [
           "application/json"
         ],
@@ -133,10 +248,52 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Facultades"
+        ],
+        "summary": "Create a new university",
+        "description": "Creates a new university in the database.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                },
+                "web": {
+                  "example": "any"
+                },
+                "social": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "logo": {
+                  "example": "any"
+                },
+                "carreras": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -144,10 +301,10 @@
     "/facultades/{id}": {
       "get": {
         "tags": [
-          "Contacts"
+          "Facultades"
         ],
-        "summary": "Get a contact by ID",
-        "description": "Retrieves a single contact using its MongoDB ID.",
+        "summary": "Get a university by ID",
+        "description": "Retrieves a single university using its MongoDB ID.",
         "produces": [
           "application/json"
         ],
@@ -169,23 +326,70 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Facultades"
+        ],
+        "summary": "Update a university",
+        "description": "Updates an existing university using its MongoDB ID.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                },
+                "web": {
+                  "example": "any"
+                },
+                "social": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "logo": {
+                  "example": "any"
+                },
+                "carreras": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Facultades"
+        ],
+        "summary": "Delete a university",
+        "description": "Deletes a university using its MongoDB ID.",
         "parameters": [
           {
             "name": "id",
@@ -195,8 +399,14 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
