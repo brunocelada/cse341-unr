@@ -20,14 +20,28 @@ const getAll = async (req, res) => {
     //#swagger.tags=["Carreras"]
     //#swagger.summary = "Get all degrees"
     //#swagger.description = "Retrieves all degrees stored in the database."
-    const result = await mongodb.getDatabase().db().collection("carreras").find();
-    result.toArray().then((degrees) => {
-        if (degrees.length === 0) {
-            return res.status(404).json({ message: "Database is empty" });
-        }
-        res.setHeader("Content-Type", "application/json");
-        res.status(200).json(degrees);
-    });
+    try {
+        const result = await mongodb
+            .getDatabase()
+            .db()
+            .collection("carreras")
+            .find();
+        result.toArray().then((degrees) => {
+            if (degrees.length === 0) {
+                return res.status(404).json({ message: "Database is empty" });
+            }
+            res.setHeader("Content-Type", "application/json");
+            res.status(200).json(degrees);
+        });
+    } catch (error) {
+        console.error("Error getting carreras:", error);
+
+        res.status(500).json({
+            message: "Error getting carreras",
+            error: error.message
+        });
+    }
+
 };
 
 const createCarrera = async (req, res) => {
