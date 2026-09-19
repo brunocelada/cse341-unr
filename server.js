@@ -42,7 +42,6 @@ process.on("uncaughtException", (err, origin) => {
     );
 });
 
-
 mongodb.initDb((err) => {
     if (err) {
         console.log(err);

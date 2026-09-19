@@ -5,8 +5,8 @@ const doc = {
         title: "UNR API",
         description: "A RESTful API for managing degree programs information using Node.js, Express, and MongoDB. (BYU | CSE341)",
     },
-    host: "cse341-unr.onrender.com",
-    schemes: ["https"],
+    host: "localhost:3000",
+    schemes: ["http", "https"],
     // To test:
     //      host: "localhost:3000",
     //      schemes: ["http", "https"],

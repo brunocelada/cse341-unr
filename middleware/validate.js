@@ -5,7 +5,7 @@ const saveDegree = (req, res, next) => {
         carrera: "required|string",
         facultadId: "required|string",
         phone: "required|string",
-        durationYears: "required|numeric|max:3",
+        durationYears: "required|numeric|max:25",
         mail: "required|email",
         creditHours: "required|integer",
         type: "required|string"

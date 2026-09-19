@@ -1,3 +1,4 @@
 node_modules
 .env
 data/unr-project-facultades.json
+data/unr-project-carreras.json
