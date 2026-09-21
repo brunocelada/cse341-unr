@@ -12,8 +12,6 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(express.static("public"));
-
 const PORT = process.env.PORT || 3000;
 
 var options = {
@@ -44,13 +42,15 @@ passport.deserializeUser((user, done) => {
 
 // ------------
 // MIDDLEWARE
+app.use(express.static("public"));
+
 app
     .use(bodyParser.json())
     // Session
     .use(session({
         secret: process.env.SESSION_SECRET || "cookie",
         resave: false,
-        saveUninitialized: true,
+        saveUninitialized: false,
     }))
     .use(passport.initialize())
     .use(passport.session())
@@ -82,7 +82,14 @@ app.get(
     }),
     (req, res) => {
         req.session.user = req.user;
-        res.redirect("/");
+        req.session.save((err) => {
+            if (err) {
+                console.error("Error saving session:", err);
+                return res.status(500).send("Error saving session");
+            }
+
+            res.redirect("/");
+        });
     }
 );
 
@@ -108,11 +115,11 @@ mongodb.initDb((err) => {
         console.log(err);
     } else {
         app.listen(PORT, () => {
-            console.log("Database is listening and node Running on port " + PORT)
+            console.log("Database is listening and Node Running on port " + PORT)
         });
     }
 });
 
-app.listen(PORT, () => {
-    console.log("Running on port " + PORT);
-});
+// app.listen(PORT, () => {
+//     console.log("Running on port " + PORT);
+// });
