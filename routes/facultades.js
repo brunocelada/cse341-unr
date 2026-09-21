@@ -4,6 +4,7 @@ const path = require("path");
 
 const facultadesController = require("../controllers/facultades");
 const validation = require("../middleware/validate");
+const { isAuthenticated } = require("../middleware/authenticate");
 
 router.get("/display/", (req, res) => {
     //#swagger.tags=["Facultades"]
@@ -27,19 +28,23 @@ router.post("/",
     //#swagger.tags=["Facultades"]
     //#swagger.summary = "Create a new university"
     //#swagger.description = "Creates a new university in the database."
-    validation.saveUniversity, facultadesController.createFacultad);
+    isAuthenticated,
+    validation.saveUniversity,
+    facultadesController.createFacultad);
 
 router.put("/:id",
     //#swagger.tags=["Facultades"]
     //#swagger.summary = "Update a university"
     //#swagger.description = "Updates an existing university using its MongoDB ID."
-    validation.saveUniversity, facultadesController.updateFacultad);
+    isAuthenticated,
+    validation.saveUniversity,
+    facultadesController.updateFacultad);
 
 router.delete("/:id",
     //#swagger.tags=["Facultades"]
     //#swagger.summary = "Delete a university"
     //#swagger.description = "Deletes a university using its MongoDB ID."
-
+    isAuthenticated,
     facultadesController.deleteFacultad);
 
 module.exports = router;

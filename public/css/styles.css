@@ -10,6 +10,9 @@ header {
   color: white;
   padding: 20px;
   justify-items: center;
+  h1 {
+    line-height: 1.5;
+  }
 }
 
 nav {
@@ -60,7 +63,7 @@ footer {
   color: black;
   background-color: white;
   /* background-color: rgb(164, 0, 205); */
-  padding: 0.3em;
+  padding: 0.2em;
 }
 .cards {
   display: flex;
@@ -106,4 +109,25 @@ article a {
 }
 article a:hover {
   color: #0066cc;
+}
+
+/* LOGIN-OUT */
+#logs {
+  margin: 1.5em auto;
+
+  a {
+    cursor: pointer;
+    text-decoration: underline;
+    font-style: italic;
+    color: white;
+    transition: color 0.1s ease-in-out;
+
+    &:hover {
+      color: rgb(190, 120, 255);
+    }
+  }
+}
+
+#user-info {
+  font-weight: bold;
 }

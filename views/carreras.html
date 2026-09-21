@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="/css/styles.css">
     <script src="/js/carreras.js"></script>
+    <script src="/js/auth.js"></script>
 </head>
 
 <body>
@@ -16,7 +17,17 @@
     <header>
         <h1><span class="siglas">UNR</span> National University of Rosario | <span class="translate">Universidad
                 Nacional de Rosario</span></h1>
+        <div id="logs">
+            <span id="user-info"></span>
 
+            <a id="login" href="/login">
+                Login with GitHub
+            </a>
+
+            <a id="logout" href="/logout" style="display: none;">
+                Logout
+            </a>
+        </div>
         <nav>
             <a href="/">Home</a>
             <a href="/carreras/display">Degree Programs</a>

@@ -5,6 +5,11 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 
 const mongodb = require("./data/database.js");
+const passport = require("passport");
+const session = require("express-session");
+const GitHubStrategy = require("passport-github2").Strategy;
+const cors = require("cors");
+
 const app = express();
 
 app.use(express.static("public"));
@@ -17,6 +22,14 @@ var options = {
 
 app
     .use(bodyParser.json())
+    // Session
+    .use(session({
+        secret: "cookie",
+        resave: false,
+        saveUninitialized: true,
+    }))
+    .use(passport.initialize())
+    .use(passport.session())
     .use((req, res, next) => {
         res.setHeader(
             "Access-Control-Allow-Origin",
@@ -31,8 +44,40 @@ app
         );
         next();
     })
+    .use(cors({ methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"] }))
+    .use(cors({ origin: "*" }))
     .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, options))
     .use("/", require("./routes"));
+
+//vPassport Middleware
+passport.use(new GitHubStrategy({
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: process.env.CALLBACK_URL
+},
+    function (accessToken, refreshToken, profile, done) {
+        return done(null, profile);
+    }
+));
+
+passport.serializeUser((user, done) => {
+    done(null, user);
+});
+passport.deserializeUser((user, done) => {
+    done(null, user);
+});
+
+// app.get("/", (req, res) => {
+//     res.send(req.session.user !== undefined ? `Logged in as ${req.session.user.displayName}` : "Logged Out")
+// });
+
+app.get("/github/callback", passport.authenticate("github", {
+    failureRedirect: "/api-docs", session: false
+}),
+    (req, res) => {
+        req.session.user = req.user;
+        res.redirect("/");
+    });
 
 // Error Handling
 process.on("uncaughtException", (err, origin) => {
